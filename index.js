@@ -1,8 +1,12 @@
 const express = require("express");
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 const bodyParser = require('body-parser');
 
 const app = express();
+app.use(express.json());
 
 const path = require("path");
 
@@ -49,12 +53,12 @@ app.get("/url/:shortId", async (req, res) => {
     res.redirect(entry.redirectURL)
 })
 
-app.use(express.json());
 
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
-connectMongooseDb('mongodb://127.0.0.1:27017/short-url')
+connectMongooseDb(process.env.MONGOURL)
     .then(() => console.log("MongoDB Connected"))
+
 
 app.listen(PORT, () => console.log(`Server Started at PORT: ${PORT}`))
 
