@@ -65,10 +65,10 @@ app.get("/url/:shortId", async (req, res) => {
 
 app.use(express.urlencoded({ extended: false }));
 
-// connectMongooseDb(process.env.MONGOURL)
-//     .then(() => console.log("MongoDB Connected"))
-connectMongooseDb('mongodb://127.0.0.1:27017/short-url')
+connectMongooseDb(process.env.MONGOURL)
     .then(() => console.log("MongoDB Connected"))
+// connectMongooseDb('mongodb://127.0.0.1:27017/short-url')
+//     .then(() => console.log("MongoDB Connected"))
 
 
 app.listen(PORT, () => console.log(`Server Started at PORT: ${PORT}`))
